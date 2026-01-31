@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href=".\style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <nav class="navbar navbar-expand-md bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Africell KPIs</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Countries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Verticals</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="KPIDashboard">
+            <div id="SummaryNumbers">
+                <div class="KpiCard">
+                    <h2 class="KpiName">Revenue</h2>
+                    <h2 class="KpiValue">954,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Recharge</h2>
+                    <h2 class="KpiValue">1,254,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Active 30</h2>
+                    <h2 class="KpiValue">2,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Active 90</h2>
+                    <h2 class="KpiValue">4,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Revenue</h2>
+                    <h2 class="KpiValue">954,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Recharge</h2>
+                    <h2 class="KpiValue">1,254,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Active 30</h2>
+                    <h2 class="KpiValue">2,658,875</h2>
+                </div>
+                <div class="KpiCard">
+                    <h2 class="KpiName">Active 90</h2>
+                    <h2 class="KpiValue">4,658,875</h2>
+                </div>
+
+            </div>
+            <div class="chart">
+                <div class="row">
+                    <div class="label">Active 1</div>
+                    <div class="bar-wrap">
+                        <div class="bar" style="width: 50%;">
+                            <span class="value">54,112,695</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">Active 30 days</div>
+                    <div class="bar-wrap">
+                        <div class="bar" style="width: 69%;">
+                            <span class="value">75,465,806</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">Active 90 Days</div>
+                    <div class="bar-wrap">
+                        <div class="bar" style="width: 100%;">
+                            <span class="value">109,193,806</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapLineChart">
+                <h2 class="wrapLineChartH2">Trends for Recharge and Revenue</h2>
+                <canvas id="trendChart" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

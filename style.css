@@ -1,0 +1,117 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-size: 9px;
+}
+
+.page {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 3.5rem 1fr;
+}
+
+#KPIDashboard {
+    overflow: auto;
+}
+
+#SummaryNumbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.KpiCard {
+    background-color: #F5F5F5;
+    border-radius: 2rem;
+    width: 16rem;
+    height: 8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.KpiName {
+    color: #243985;
+    font: 500 1.5rem Arial, sans-serif;
+}
+
+.KpiValue {
+    color: #941851;
+    font: 600 2rem Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.container-fluid {
+    background-color: #F5F5F5;
+}
+
+.navbar-brand {
+    color: #941851;
+}
+
+.chart {
+    padding: 1rem;
+    font: 500 2rem Arial, sans-serif;
+    margin: 0 auto;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    align-items: center;
+    margin: 14px 0;
+}
+
+.label {
+    color: #1f4aa8;
+    white-space: nowrap;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+.bar-wrap {
+    background: transparent;
+        padding: 0;
+}
+
+.bar {
+    position: relative;
+    height: 34px;
+    background: #941851;
+    border-radius: 5px;
+}
+
+.value {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #F5F5F5;
+    font-weight: 600;
+}
+
+.wrapLineChart {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.wrapLineChartH2 {
+    margin: 0 0 12px;
+    color: #898989;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 12px;
+}
