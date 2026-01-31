@@ -18,7 +18,7 @@ body {
 #SummaryNumbers {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -26,8 +26,8 @@ body {
 
 .KpiCard {
     background-color: #F5F5F5;
-    border-radius: 2rem;
-    height: 7rem;
+    border-radius: 1.5rem;
+    height: 6rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -116,3 +116,4 @@ canvas {
     border-radius: 12px;
 
 }
+
