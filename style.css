@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     margin: 0;
-    font-size: 8px;
+    font-size: 9px;
 }
 
 .page {
@@ -16,33 +16,33 @@ body {
 }
 
 #SummaryNumbers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     gap: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
+
 .KpiCard {
     background-color: #F5F5F5;
     border-radius: 2rem;
-    width: 16rem;
-    height: 8rem;
+    height: 7rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+
 .KpiName {
     color: #243985;
-    font: 500 1.5rem Arial, sans-serif;
+    font: 500 1.2rem Arial, sans-serif;
 }
 
 .KpiValue {
     color: #941851;
-    font: 600 2rem Arial, sans-serif;
+    font: 600 1.5rem Arial, sans-serif;
 }
 
 .navbar {
@@ -61,13 +61,13 @@ body {
 
 .chart {
     padding: 1rem;
-    font: 500 2rem Arial, sans-serif;
+    font: 500 1.5rem Arial, sans-serif;
     margin: 0 auto;
 }
 
 .row {
     display: grid;
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: 110px 1fr;
     align-items: center;
     margin: 14px 0;
 }
@@ -76,7 +76,7 @@ body {
     color: #1f4aa8;
     white-space: nowrap;
     padding: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .bar-wrap {
@@ -86,7 +86,7 @@ body {
 
 .bar {
     position: relative;
-    height: 34px;
+    height: 25px;
     background: #941851;
     border-radius: 5px;
 }
