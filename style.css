@@ -8,7 +8,11 @@ body {
 .page {
     height: 100vh;
     display: grid;
-    grid-template-rows: 3.5rem 1fr;
+    grid-template-rows: 3rem minmax(30rem, 1fr) 5rem;
+}
+
+.SelectMonth{
+    max-width: 100px;
 }
 
 #KPIDashboard {
@@ -23,7 +27,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
-
 
 .KpiCard {
     background-color: #F5F5F5;
@@ -51,8 +54,9 @@ body {
     padding-bottom: 0;
 }
 
-.container-fluid {
+.HeaderUsed {
     background-color: #F5F5F5;
+    padding: 0 1rem;
 }
 
 .navbar-brand {
@@ -113,3 +117,23 @@ canvas {
     background: #fff;
 }
 
+.DivOperations{
+    max-width: 1000px;
+}
+
+.btnOperation{
+    width: 50px;
+    border: none;
+    background-color: #941851;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #F5F5F5;
+     outline: none;
+}
+
+.btnOperation:hover,
+.btnOperation:active,
+.btnOperation:focus-visible {
+    background-color: #941851 !important;
+    font-size: 1.9rem;
+}
