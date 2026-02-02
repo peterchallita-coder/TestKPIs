@@ -13,26 +13,15 @@
 
 <body>
     <div class="page">
-        <nav class="navbar navbar-expand-md bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Africell KPIs</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Countries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Verticals</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid HeaderUsed">
+                <span class="navbar-brand mb-0 me-2 h1">Africell KPIs Monthly Summary</span>
+
+                <select class="form-select mb-auto ms-1 SelectMonth">
+                    <option value="1">2026 Jan</option>
+                    <option value="2">2025 Dec</option>
+                    <option value="3">2025 Nov</option>
+                </select>
             </div>
         </nav>
         <div id="KPIDashboard">
@@ -104,6 +93,15 @@
                 <canvas id="trendChart" height="120"></canvas>
             </div>
         </div>
+        <nav class="navbar bg-body-tertiary">
+            <form class="container-fluid justify-content-start DivOperations">
+                <button class="btn btn-outline-success mx-auto btnOperation" type="button">All</button>
+                <button class="btn btn-outline-success mx-auto btnOperation" type="button">DRC</button>
+                <button class="btn btn-outline-success mx-auto btnOperation" type="button">SL</button>
+                <button class="btn btn-outline-success mx-auto btnOperation" type="button">GM</button>
+                <button class="btn btn-outline-success mx-auto btnOperation" type="button">AO</button>
+            </form>
+        </nav>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
