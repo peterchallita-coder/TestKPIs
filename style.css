@@ -352,7 +352,7 @@ body.dark .SelectMonth {
 }
 
 /* =========================
-   ADDED: Panel 3 periods + mini bar chart
+   ADDED: Panel 3 periods + mini bar chart (BIGGER BARS)
 ========================= */
 
 .kpiPeriodGrid{
@@ -399,46 +399,89 @@ body.dark .SelectMonth {
     margin-bottom: 6px;
 }
 
-.miniBars{
-    margin-top: 8px;
+.kpiBreakdownRows{
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
 }
 
+.kpiBreakdownRow{
+  display: grid;
+  grid-template-columns: 60px auto;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.kpiBreakdownLabel{
+  font-weight: 600;
+  color: #333;
+}
+
+.kpiBreakdownValue{
+  font-weight: 600;
+  color: #444;
+  font-variant-numeric: tabular-nums; /* nicer alignment for numbers */
+}
+
+
+.miniBars{
+    margin-top: 10px;
+}
+
+/* ===== KPI Overlay mini bars (same style as Active bars) ===== */
+
 .miniRow{
-    display:grid;
-    grid-template-columns: 96px 1fr 120px;
-    gap: 10px;
-    align-items:center;
-    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 60px 1fr; /* label + bar */
+    gap: 14px;
+    align-items: center;
+    margin: 12px 0;
 }
 
 .miniLbl{
-    font-size: 0.95rem;
-    color:#555;
+    font-size: 1rem;
+    color: #555;
     white-space: nowrap;
 }
 
+/* remove visible track */
 .miniTrack{
-    height: 12px;
-    background: #f0f0f0;
-    border-radius: 999px;
-    overflow: hidden;
+    background: transparent;
+    height: 20px;
 }
 
+/* filled pill bar */
 .miniFill{
-    height: 100%;
-    width: 0%;
-    border-radius: 999px;
+    position: relative;
+    height: 20px;
+    width: 0%;                     /* animated from 0 */
     background: #941851;
+    border-radius: 5px;
+    min-width: 140px;              /* ensures value always fits */
     transition: width 0.65s ease;
 }
 
+/* final width */
 .miniFill.miniFillOn{
     width: var(--w);
 }
 
+/* value INSIDE bar */
+.miniFill::after{
+    content: attr(data-value);
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    white-space: nowrap;
+}
+
 .miniVal{
     text-align: right;
-    font-size: 0.95rem;
+    font-size: 1.02rem;
     color:#333;
 }
 
@@ -462,4 +505,26 @@ body.dark .SelectMonth {
 .kpiTotalsTitle{
     margin-top: 10px;
     color:#444;
+}
+
+/* =========================
+   ADDED: highlight "current month" for All view
+========================= */
+.kpi3colTable th.colCurrent,
+.kpi3colTable td.colCurrent {
+    background: rgba(148, 24, 81, 0.06);
+}
+
+.kpi3colTable th.colCurrent {
+    color: #941851;
+    font-weight: 700;
+}
+
+.miniRowCurrent .miniLbl {
+    color: #941851;
+    font-weight: 700;
+}
+
+.miniRowCurrent .miniFill {
+    box-shadow: 0 0 0 2px rgba(148, 24, 81, 0.22) inset;
 }

@@ -114,7 +114,7 @@ function getSelectedOperation() {
   return document.querySelector('input[name="operation"]:checked')?.value || "All";
 }
 
-// Reads dropdown label like "2026 Jan" from your HTML <select class="SelectMonth"> :contentReference[oaicite:1]{index=1}
+// Reads dropdown label like "2026 Jan" from your HTML <select class="SelectMonth">
 function getSelectedMonthParts() {
   const sel = document.querySelector(".SelectMonth");
   const txt = sel?.selectedOptions?.[0]?.textContent?.trim() || "";
@@ -265,15 +265,16 @@ function miniBarsHTML(items) {
 
   return `
     <div class="miniBars">
-      ${items.map(({ label, value }) => {
-        const pct = Math.max(6, Math.round((value / max) * 100));
+      ${items.map(({ label, value, isCurrent }) => {
+        const pct = Math.max(6, Math.round((value / max) * 100)); // keep visible
         return `
-          <div class="miniRow">
+          <div class="miniRow ${isCurrent ? "miniRowCurrent" : ""}">
             <div class="miniLbl">${label}</div>
             <div class="miniTrack">
-              <div class="miniFill" style="--w:${pct}%"></div>
+              <div class="miniFill"
+                   style="--w:${pct}%"
+                   data-value="${formatNumber(value)}"></div>
             </div>
-            <div class="miniVal">${formatNumber(value)}</div>
           </div>
         `;
       }).join("")}
@@ -325,14 +326,23 @@ function ShowKPIsPanel(card) {
 
       ${miniBarsHTML([
         { label: prevLabel, value: v3.prev },
-        { label: curLabel, value: v3.cur },
+        { label: curLabel, value: v3.cur, isCurrent: true },
         { label: lyLabel, value: v3.ly }
       ])}
 
       <div class="kpiBreakdown">
         <div class="kpiBreakdownTitle"><b>${curLabel} breakdown</b></div>
-        <div><b>Africell:</b> ${formatNumber(afrCur)}</div>
-        <div><b>Afrimoney:</b> ${formatNumber(afmCur)}</div>
+          <div class="kpiBreakdownRows">
+            <div class="kpiBreakdownRow">
+              <span class="kpiBreakdownLabel">Africell</span>
+              <span class="kpiBreakdownValue">${formatNumber(afrCur)}</span>
+            </div>
+              
+            <div class="kpiBreakdownRow">
+              <span class="kpiBreakdownLabel">Afrimoney</span>
+              <span class="kpiBreakdownValue">${formatNumber(afmCur)}</span>
+            </div>
+          </div>
       </div>
     `;
 
@@ -370,7 +380,7 @@ function ShowKPIsPanel(card) {
         <tr>
           <th>Op</th>
           <th>${prevLabel}</th>
-          <th>${curLabel}</th>
+          <th class="colCurrent">${curLabel}</th>
           <th>${lyLabel}</th>
         </tr>
       </thead>
@@ -379,7 +389,7 @@ function ShowKPIsPanel(card) {
           <tr>
             <td><b>${r.op}</b></td>
             <td>${formatNumber(r.prev)}</td>
-            <td>${formatNumber(r.cur)}</td>
+            <td class="colCurrent">${formatNumber(r.cur)}</td>
             <td>${formatNumber(r.ly)}</td>
           </tr>
         `).join("")}
@@ -390,7 +400,7 @@ function ShowKPIsPanel(card) {
 
     ${miniBarsHTML([
       { label: prevLabel, value: totals.prev },
-      { label: curLabel, value: totals.cur },
+      { label: curLabel, value: totals.cur, isCurrent: true },
       { label: lyLabel, value: totals.ly }
     ])}
   `;
