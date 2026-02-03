@@ -8,11 +8,7 @@ body {
 .page {
     height: 100vh;
     display: grid;
-    grid-template-rows: 3rem minmax(30rem, 1fr) 5rem;
-}
-
-.SelectMonth{
-    max-width: 100px;
+    grid-template-rows: 4.5rem 4rem minmax(30rem, 1fr);
 }
 
 #KPIDashboard {
@@ -36,8 +32,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+    user-select: none;
 }
-
 
 .KpiName {
     color: #243985;
@@ -59,7 +56,7 @@ body {
     padding: 0 1rem;
 }
 
-.navbar-brand {
+.navbar-brand, .navbar-brand:hover{
     color: #941851;
 }
 
@@ -121,19 +118,348 @@ canvas {
     max-width: 1000px;
 }
 
-.btnOperation{
-    width: 50px;
-    border: none;
-    background-color: #941851;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #F5F5F5;
-     outline: none;
+/* Base button look */
+.btnOperation {
+    color: #941851;
+    border-color: #941851;
+    background-color: transparent;
+    transition: all 0.25s ease;
+    width: 5rem;
 }
 
-.btnOperation:hover,
-.btnOperation:active,
-.btnOperation:focus-visible {
+/* Checked (active radio) */
+.btn-check:checked + .btnOperation {
     background-color: #941851 !important;
-    font-size: 1.9rem;
+    border-color: #941851 !important;
+    color: #fff !important;
+    font-size: 1.8rem;
+}
+
+/* Unchecked hover / focus / active */
+.btn-check:not(:checked) + .btnOperation:hover,
+.btn-check:not(:checked) + .btnOperation:focus,
+.btn-check:not(:checked) + .btnOperation:active {
+    background-color: transparent !important;
+    border-color: #941851 !important;
+    color: #941851 !important;
+    font-size: 1.8rem;
+}
+
+/* Remove Bootstrap focus ring */
+.btn-check:focus + .btnOperation {
+    box-shadow: none !important;
+}
+
+/* unchecked + hover */
+.btn-check:not(:checked) + .btnOperation:hover {
+    font-size: 1.8rem;
+    background-color: inherit;
+    color: inherit;
+    border-color: #941851;
+}
+
+.SelectMonth{
+    max-width: 100px;
+}
+
+.SelectMonth {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 10px 40px 10px 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+
+    background-color: #fff;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #941851 50%),
+        linear-gradient(135deg, #941851 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 14px) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.SelectMonth:hover {
+    border-color: #941851;
+}
+
+.SelectMonth:focus {
+    outline: none;
+    border-color: #941851;
+    box-shadow: 0 0 0 3px rgba(148, 24, 81, 0.2);
+}
+
+body.dark .SelectMonth {
+    background-color: #1e1e1e;
+    border-color: #333;
+    color: #f1f1f1;
+}
+
+/* ===== Overlay ===== */
+#kpiOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ===== Popup Panel ===== */
+#kpiPanel {
+    position: relative;
+    background: #ffffff;
+    padding: 28px 32px;
+    border-radius: 18px;
+    min-width: 360px;
+    max-width: 90vw;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.18),
+        0 30px 60px rgba(0, 0, 0, 0.12);
+
+    animation: kpiPopupIn 0.25s ease-out;
+}
+
+/* ===== Typography ===== */
+#kpiPanel h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2b2b2b;
+    margin-bottom: 14px;
+}
+
+#kpiPanel p {
+    font-size: 1.05rem;
+    margin: 6px 0;
+    color: #444;
+}
+
+/* ===== Table (All operations view) ===== */
+#kpiPanel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+#kpiPanel td {
+    padding: 10px 6px;
+    font-size: 1rem;
+    color: #333;
+}
+
+#kpiPanel tr:not(:last-child) td {
+    border-bottom: 1px solid #eee;
+}
+
+#kpiPanel td:first-child {
+    font-weight: 600;
+    color: #555;
+}
+
+/* ===== Entrance animation ===== */
+@keyframes kpiPopupIn {
+    from {
+        transform: translateY(10px) scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ===== Close button ===== */
+.kpiCloseBtn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    background: transparent;
+    border: none;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+
+    color: #aaa;
+    cursor: pointer;
+
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.kpiCloseBtn:hover {
+    color: #941851;
+    transform: scale(1.15);
+}
+
+.kpiCloseBtn:focus {
+    outline: none;
+}
+
+/* =========================
+   ADDED: KPI CHANGE ANIMATION (cards)
+========================= */
+.KpiValue {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+.KpiValue.kpi-updating {
+    opacity: 0;
+    transform: scale(0.92);
+}
+.KpiValue.kpi-flash {
+    color: #1f4aa8;
+}
+
+/* =========================
+   ADDED: BAR CHANGE ANIMATION (Active 1 / 30 / 90)
+========================= */
+.bar {
+    transition: width 0.45s ease;
+}
+
+.value {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.value.bar-updating {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.92);
+}
+
+.value.bar-flash {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.35);
+}
+
+/* =========================
+   ADDED: Panel 3 periods + mini bar chart
+========================= */
+
+.kpiPeriodGrid{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 10px 0 14px;
+}
+
+.kpiPeriod{
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 10px 12px;
+    background: #fafafa;
+    text-align: center;
+}
+
+.kpiPeriodMain{
+    border-color: rgba(148,24,81,0.25);
+    background: rgba(148,24,81,0.06);
+}
+
+.kpiPeriodTitle{
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.kpiPeriodValue{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2b2b2b;
+}
+
+.kpiBreakdown{
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 1rem;
+    color: #444;
+}
+
+.kpiBreakdownTitle{
+    margin-bottom: 6px;
+}
+
+.miniBars{
+    margin-top: 8px;
+}
+
+.miniRow{
+    display:grid;
+    grid-template-columns: 96px 1fr 120px;
+    gap: 10px;
+    align-items:center;
+    margin: 10px 0;
+}
+
+.miniLbl{
+    font-size: 0.95rem;
+    color:#555;
+    white-space: nowrap;
+}
+
+.miniTrack{
+    height: 12px;
+    background: #f0f0f0;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.miniFill{
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: #941851;
+    transition: width 0.65s ease;
+}
+
+.miniFill.miniFillOn{
+    width: var(--w);
+}
+
+.miniVal{
+    text-align: right;
+    font-size: 0.95rem;
+    color:#333;
+}
+
+.kpi3colTable{
+    width:100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.kpi3colTable th, .kpi3colTable td{
+    padding: 10px 6px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+.kpi3colTable th{
+    color:#666;
+    font-weight: 600;
+}
+
+.kpiTotalsTitle{
+    margin-top: 10px;
+    color:#444;
 }
